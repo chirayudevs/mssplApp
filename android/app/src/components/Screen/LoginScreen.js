@@ -33,16 +33,16 @@ const LoginScreen = ({navigation}) => {
       return;
     }
     setLoading(true);
-    /*let dataToSend = {email: userEmail, password: userPassword};
+    let dataToSend = {email: userEmail, password: userPassword};
     let formBody = [];
     for (let key in dataToSend) {
       let encodedKey = encodeURIComponent(key);
       let encodedValue = encodeURIComponent(dataToSend[key]);
       formBody.push(encodedKey + '=' + encodedValue);
     }
-    formBody = formBody.join('&');*/
+    formBody = formBody.join('&');
 
-    /*fetch('https://dummyjson.com/auth/login', {
+    fetch('https://dummyjson.com/auth/login', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -70,7 +70,7 @@ const LoginScreen = ({navigation}) => {
         //Hide Loader
         setLoading(false);
         console.error(error);
-      });*/
+      });
   };
   return (
     <View style={styles.mainBody}>

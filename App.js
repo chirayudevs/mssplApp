@@ -48,7 +48,7 @@ function App() {
           component={LoginScreen}
           options={{headerShown: false}}
         />
-        {/*<Stack.Screen
+        <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
           options={{
@@ -61,7 +61,7 @@ function App() {
               fontWeight: 'bold',
             },
           }}
-        />*/}
+        />
       </Stack.Navigator>
     );
   };
@@ -136,11 +136,11 @@ function App() {
           options={{headerShown: false}}
         />
 
-        {/*<Stack.Screen
+        <Stack.Screen
           name="DrawerNavigationRoutes"
           component={DrawerNavigatorRoutes}
           options={{headerShown: false}}
-        />*/}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

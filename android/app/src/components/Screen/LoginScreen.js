@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loader from '../Loader';
 
 const LoginScreen = ({navigation}) => {
 
@@ -32,16 +33,16 @@ const LoginScreen = ({navigation}) => {
       return;
     }
     setLoading(true);
-    let dataToSend = {email: userEmail, password: userPassword};
+    /*let dataToSend = {email: userEmail, password: userPassword};
     let formBody = [];
     for (let key in dataToSend) {
       let encodedKey = encodeURIComponent(key);
       let encodedValue = encodeURIComponent(dataToSend[key]);
       formBody.push(encodedKey + '=' + encodedValue);
     }
-    formBody = formBody.join('&');
+    formBody = formBody.join('&');*/
 
-    fetch('https://dummyjson.com/auth/login', {
+    /*fetch('https://dummyjson.com/auth/login', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -69,7 +70,7 @@ const LoginScreen = ({navigation}) => {
         //Hide Loader
         setLoading(false);
         console.error(error);
-      });
+      });*/
   };
   return (
     <View style={styles.mainBody}>
@@ -84,15 +85,7 @@ const LoginScreen = ({navigation}) => {
         <View>
           <KeyboardAvoidingView enabled>
             <View style={{alignItems: 'center'}}>
-              <Image
-                source={require('../Image/aboutreact.png')}
-                style={{
-                  width: '50%',
-                  height: 100,
-                  resizeMode: 'contain',
-                  margin: 30,
-                }}
-              />
+              <Text>test</Text>
             </View>
             <View style={styles.SectionStyle}>
               <TextInput

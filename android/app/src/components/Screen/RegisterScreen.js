@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Loader from './Components/Loader';
+import Loader from '../Loader';
 
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
@@ -61,15 +61,15 @@ const RegisterScreen = (props) => {
       address: userAddress,
       password: userPassword,
     };
-    var formBody = [];
+    /*var formBody = [];
     for (var key in dataToSend) {
       var encodedKey = encodeURIComponent(key);
       var encodedValue = encodeURIComponent(dataToSend[key]);
       formBody.push(encodedKey + '=' + encodedValue);
     }
-    formBody = formBody.join('&');
+    formBody = formBody.join('&');*/
 
-    fetch('http://localhost:3000/api/user/register', {
+    /*fetch('https://dummyjson.com/auth/register', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -97,7 +97,7 @@ const RegisterScreen = (props) => {
         //Hide Loader
         setLoading(false);
         console.error(error);
-      });
+      });*/
   };
   if (isRegistraionSuccess) {
     return (
@@ -107,14 +107,6 @@ const RegisterScreen = (props) => {
           backgroundColor: '#307ecc',
           justifyContent: 'center',
         }}>
-        <Image
-          source={require('../Image/success.png')}
-          style={{
-            height: 150,
-            resizeMode: 'contain',
-            alignSelf: 'center'
-          }}
-        />
         <Text style={styles.successTextStyle}>
           Registration Successful
         </Text>
@@ -138,7 +130,7 @@ const RegisterScreen = (props) => {
           alignContent: 'center',
         }}>
         <View style={{alignItems: 'center'}}>
-          <Image
+          {/*<Image
             source={require('../Image/aboutreact.png')}
             style={{
               width: '50%',
@@ -146,7 +138,7 @@ const RegisterScreen = (props) => {
               resizeMode: 'contain',
               margin: 30,
             }}
-          />
+          />*/}
         </View>
         <KeyboardAvoidingView enabled>
           <View style={styles.SectionStyle}>

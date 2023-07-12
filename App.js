@@ -31,6 +31,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './android/app/src/components/Screen/SplashScreen';
 import LoginScreen from './android/app/src/components/Screen/LoginScreen';
+import RegisterScreen from './android/app/src/components/Screen/RegisterScreen';
+import DrawerNavigatorRoutes from './android/app/src/components/Screen/DrawerNavigatorRoutes';
 
 function App() {
 
@@ -46,7 +48,7 @@ function App() {
           component={LoginScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        {/*<Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
           options={{
@@ -59,7 +61,7 @@ function App() {
               fontWeight: 'bold',
             },
           }}
-        />
+        />*/}
       </Stack.Navigator>
     );
   };
@@ -130,15 +132,15 @@ function App() {
 
         <Stack.Screen
           name="Auth"
-          compoent={Auth}
+          component={Auth}
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
+        {/*<Stack.Screen
           name="DrawerNavigationRoutes"
-          component={DrawerNavigationRoutes}
+          component={DrawerNavigatorRoutes}
           options={{headerShown: false}}
-        />
+        />*/}
       </Stack.Navigator>
     </NavigationContainer>
   );

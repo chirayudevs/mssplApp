@@ -12,11 +12,12 @@ import {
 } from 'react-native';
 import Loader from '../Loader';
 
-const RegisterScreen = (props) => {
+const RegisterScreens = (props) => {
   const [name, setName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [reEnterPassword, setReEnterPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
   const [
@@ -47,6 +48,9 @@ const RegisterScreen = (props) => {
       alert('Please fill Password');
       return;
     }
+    if(!reEnterPassword) {
+      alert('Please re-enter password');
+    }
     //Show Loader
     setLoading(true);
     var dataToSend = {
@@ -54,6 +58,7 @@ const RegisterScreen = (props) => {
       email: userEmail,
       userName: userName,
       password: userPassword,
+      reEnterPassword: reEnterPassword,
     };
     var formBody = [];
     for (var key in dataToSend) {
@@ -135,58 +140,35 @@ const RegisterScreen = (props) => {
           />*/}
         </View>
         <KeyboardAvoidingView enabled>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={(name) => setName(name)}
-              underlineColorAndroid="#f000"
-              placeholder="Enter Name"
-              placeholderTextColor="#8b9cb5"
-              autoCapitalize="sentences"
-              returnKeyType="next"
-              onSubmitEditing={() =>
-                emailInputRef.current && emailInputRef.current.focus()
-              }
-              blurOnSubmit={false}
-            />
-          </View>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={(UserEmail) => setUserEmail(UserEmail)}
-              underlineColorAndroid="#f000"
-              placeholder="Enter Email"
-              placeholderTextColor="#8b9cb5"
-              keyboardType="email-address"
-              ref={emailInputRef}
-              returnKeyType="next"
-              onSubmitEditing={() =>
-                passwordInputRef.current &&
-                passwordInputRef.current.focus()
-              }
-              blurOnSubmit={false}
-            />
-          </View>
-          <View style={styles.SectionStyle}>
-            <TextInput
-              style={styles.inputStyle}
-              onChangeText={(userName) => setUserName(userName)}
-              underlineColorAndroid="#f000"
-              placeholder="Enter User Name"
-              placeholderTextColor="#8b9cb5"
-              autoCapitalize="sentences"
-              returnKeyType="next"
-              onSubmitEditing={() =>
-                emailInputRef.current && emailInputRef.current.focus()
-              }
-              blurOnSubmit={false}
-            />
+          <View>
+            <Text style={styles.SectionStyle}>
+              Please set your new password
+            </Text>
           </View>
           <View style={styles.SectionStyle}>
             <TextInput
               style={styles.inputStyle}
               onChangeText={(UserPassword) =>
                 setUserPassword(UserPassword)
+              }
+              underlineColorAndroid="#f000"
+              placeholder="Enter new Password"
+              placeholderTextColor="#8b9cb5"
+              ref={passwordInputRef}
+              returnKeyType="next"
+              secureTextEntry={true}
+              onSubmitEditing={() =>
+                ageInputRef.current &&
+                ageInputRef.current.focus()
+              }
+              blurOnSubmit={false}
+            />
+          </View>
+          <View style={styles.SectionStyle}>
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={(reEnterPassword) =>
+                setReEnterPassword(reEnterPassword)
               }
               underlineColorAndroid="#f000"
               placeholder="Enter Password"
@@ -201,6 +183,7 @@ const RegisterScreen = (props) => {
               blurOnSubmit={false}
             />
           </View>
+
           {errortext != '' ? (
             <Text style={styles.errorTextStyle}>
               {errortext}
@@ -210,7 +193,7 @@ const RegisterScreen = (props) => {
             style={styles.buttonStyle}
             activeOpacity={0.5}
             onPress={handleSubmitButton}>
-            <Text style={styles.buttonTextStyle}>REGISTER</Text>
+            <Text style={styles.buttonTextStyle}>SUBMIT</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -218,7 +201,7 @@ const RegisterScreen = (props) => {
   );
 };
 
-export default RegisterScreen;
+export default RegisterScreens;
 
 const styles = StyleSheet.create({
   SectionStyle: {

@@ -10,28 +10,31 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const RegisterScreen = () => {
 
   const [userName, setUserName] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
+  const [errortext, setErrortext] = useState('');
+
 
   return (
-    <View style={{flex: 1, backgroundColor: '#307ecc'}}>
-      <Text>
-        Welcome Chirayu
-      </Text>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}
-      >
-        <View style={{alignItems: 'center'}}>
-          <KeyboardAvoidingView enabled>
-            <View style={styles.SectionStyle}>
+    <View style={{flex: 1, backgroundColor: '#307ecc', alignItems: 'center'}}>
+      <View style={{marginTop: 100}}>
+        <Text>
+          Welcome Chirayu
+        </Text>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}
+        >
+          <View>
+            <KeyboardAvoidingView enabled>
               <TouchableOpacity
                 style={styles.buttonStyle}
                 activeOpacity={0.5}>
@@ -40,9 +43,7 @@ const RegisterScreen = () => {
                   CHECK IN
                 </Text>
               </TouchableOpacity>
-            </View>
 
-            <View style={styles.SectionStyle}>
               <TouchableOpacity
                 style={styles.buttonStyle}
                 activeOpacity={0.5}>
@@ -51,10 +52,17 @@ const RegisterScreen = () => {
                   CHECK OUT
                 </Text>
               </TouchableOpacity>
-            </View>
-          </KeyboardAvoidingView>
-        </View>
-      </ScrollView>
+
+              {errortext != '' ? (
+                <Text style={styles.errorTextStyle}>
+                  {errortext}
+                </Text>
+              ) : null}
+            </KeyboardAvoidingView>
+          </View>
+        </ScrollView>
+      </View>
+
     </View>
   )
 };

@@ -22,7 +22,7 @@ const RegisterScreen = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#307ecc', alignItems: 'center'}}>
-      <View style={{marginTop: 100}}>
+      <View style={{marginTop: 100, alignItems: 'center'}}>
         <Text>
           Welcome Chirayu
         </Text>
@@ -35,24 +35,18 @@ const RegisterScreen = () => {
         >
           <View>
             <KeyboardAvoidingView enabled>
-              <TouchableOpacity
+              <Button
                 style={styles.buttonStyle}
-                activeOpacity={0.5}>
-                <Text
-                  style={styles.buttonTextStyle}>
-                  CHECK IN
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
+                activeOpacity={0.5}
+              >
+                CHECK IN
+              </Button>
+              <Button
                 style={styles.buttonStyle}
-                activeOpacity={0.5}>
-                <Text
-                  style={styles.buttonTextStyle}>
-                  CHECK OUT
-                </Text>
-              </TouchableOpacity>
-
+                activeOpacity={0.5}
+              >
+                CHECK OUT
+              </Button>
               {errortext != '' ? (
                 <Text style={styles.errorTextStyle}>
                   {errortext}

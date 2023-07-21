@@ -62,7 +62,7 @@ const settingScreenStack = ({navigation}) => {
   );
 };
 
-const DrawerNavigatorRoutes = (props) => {
+const DrawerNavigatorRoutes = () => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../Loader';
+import {Button} from 'react-native-paper';
 
 const LoginScreen = ({navigation}) => {
 
@@ -128,12 +129,13 @@ const LoginScreen = ({navigation}) => {
                 {errortext}
               </Text>
             ) : null}
-            <TouchableOpacity
+            <Button
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}>
-              <Text style={styles.buttonTextStyle}>LOGIN</Text>
-            </TouchableOpacity>
+              onPress={handleSubmitPress}
+            >
+              LOGIN
+            </Button>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('RegisterScreen')}>

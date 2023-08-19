@@ -60,6 +60,11 @@ function App() {
             },
           }}
         />
+        <Stack.Screen
+          name="RegisterScreens"
+          component={RegisterScreens}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     );
   };

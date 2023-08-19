@@ -16,14 +16,15 @@ import {Button} from 'react-native-paper';
 
 const LoginScreen = ({navigation}) => {
 
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const [userEmail, setUserEmail] = useState('dummy@abc.com');
+  const [userPassword, setUserPassword] = useState(12345);
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
 
   const handleSubmitPress = () => {
+    console.log('test')
     setErrortext('');
     if (!userEmail) {
       alert('Please fill Email');
@@ -62,6 +63,8 @@ const LoginScreen = ({navigation}) => {
           AsyncStorage.setItem('user_id', responseJson.data.email);
           console.log(responseJson.data.email);
           navigation.replace('DrawerNavigationRoutes');
+          //navigation.navigate('RegisterScreen')
+
         } else {
           setErrortext(responseJson.msg);
           console.log('Please check your email id or password');
@@ -132,13 +135,14 @@ const LoginScreen = ({navigation}) => {
             <Button
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}
+              //onPress={handleSubmitPress}
+              onPress={() => navigation.navigate('RegisterScreen')}
             >
               LOGIN
             </Button>
             <Text
               style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('RegisterScreen')}>
+              onPress={() => navigation.navigate('RegisterScreens')}>
               New Here ? Register
             </Text>
           </KeyboardAvoidingView>
@@ -185,7 +189,6 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     flex: 1,
-    color: 'white',
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,

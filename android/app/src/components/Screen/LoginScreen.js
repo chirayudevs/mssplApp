@@ -16,8 +16,8 @@ import {Button} from 'react-native-paper';
 
 const LoginScreen = ({navigation}) => {
 
-  const [userEmail, setUserEmail] = useState('dummy@abc.com');
-  const [userPassword, setUserPassword] = useState(12345);
+  const [userEmail, setUserEmail] = useState('jihowex810@bagonew.com');
+  const [userPassword, setUserPassword] = useState(12345678);
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
@@ -44,7 +44,7 @@ const LoginScreen = ({navigation}) => {
     }
     formBody = formBody.join('&');
 
-    fetch('https://dummyjson.com/auth/login', {
+    fetch('https://aws-task-pfxn.onrender.com/auth/login', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -57,11 +57,12 @@ const LoginScreen = ({navigation}) => {
       .then((responseJson) => {
         //Hide Loader
         setLoading(false);
-        console.log(responseJson);
+        console.log({responseJson});
+        console.log('test >')
         // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
-          AsyncStorage.setItem('user_id', responseJson.data.email);
-          console.log(responseJson.data.email);
+        if (responseJson.statusCode === 200) {
+          console.log('test')
+          console.log(responseJson.user?.email);
           navigation.replace('DrawerNavigationRoutes');
           //navigation.navigate('RegisterScreen')
 
@@ -135,8 +136,8 @@ const LoginScreen = ({navigation}) => {
             <Button
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              //onPress={handleSubmitPress}
-              onPress={() => navigation.navigate('RegisterScreen')}
+              onPress={handleSubmitPress}
+              //onPress={() => navigation.navigate('RegisterScreen')}
             >
               LOGIN
             </Button>

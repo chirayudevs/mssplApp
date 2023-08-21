@@ -33,6 +33,7 @@ import SplashScreen from './android/app/src/components/Screen/SplashScreen';
 import LoginScreen from './android/app/src/components/Screen/LoginScreen';
 import PunchTimeRecordScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
 import RegisterScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
+import DrawerNavigationRoutes from './android/app/src/components/Screen/DrawerNavigatorRoutes';
 
 function App() {
 
@@ -88,6 +89,12 @@ function App() {
       <Stack.Screen
         name="Auth"
         component={Auth}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="DrawerNavigationRoutes"
+        component={DrawerNavigationRoutes}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

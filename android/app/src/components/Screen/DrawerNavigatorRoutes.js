@@ -62,7 +62,7 @@ const settingScreenStack = ({navigation}) => {
   );
 };
 
-const DrawerNavigatorRoutes = () => {
+const DrawerNavigationRoutes = () => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{
@@ -89,4 +89,4 @@ const DrawerNavigatorRoutes = () => {
   );
 };
 
-export default DrawerNavigatorRoutes;
+export default DrawerNavigationRoutes;

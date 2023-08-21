@@ -9,16 +9,32 @@ import {
   Keyboard,
   TouchableOpacity,
   ScrollView,
+  ToastAndroid
 } from 'react-native';
+import moment from 'moment';
 import { Button } from 'react-native-paper';
 
-const RegisterScreen = () => {
+const PunchTimeRecordScreen = () => {
 
   const [userName, setUserName] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [errortext, setErrortext] = useState('');
+  const [checkInDisabled, setCheckInDisabled] = useState(false);
+  const [checkOutDisabled, setCheckOutDisabled] = useState(true);
 
+  const getTime = (id) => {
+    const punchTime = moment().utcOffset('+05:30').format('hh:mm:ss a');
+    console.log({punchTime})
+      if(id === 'checkIn')
+      {
+        ToastAndroid.show(`Checked In successfully at ${punchTime}`, ToastAndroid.SHORT)
+        setCheckInDisabled(true);
+      } if ((id === 'checkOut') && (checkInDisabled === true)) {
+        ToastAndroid.show(`Checked Out successfully at ${punchTime}`, ToastAndroid.SHORT)
+        setCheckOutDisabled(false);
+      }
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: '#307ecc', alignItems: 'center'}}>
@@ -36,14 +52,20 @@ const RegisterScreen = () => {
           <View>
             <KeyboardAvoidingView enabled>
               <Button
+                id='checkIn'
                 style={styles.buttonStyle}
                 activeOpacity={0.5}
+                onPress={() => getTime('checkIn')}
+                disabled={checkInDisabled}
               >
                 CHECK IN
               </Button>
               <Button
+                id='checkOut'
                 style={styles.buttonStyle}
                 activeOpacity={0.5}
+                onPress={() => getTime('checkOut')}
+                disabled={!checkInDisabled}
               >
                 CHECK OUT
               </Button>
@@ -61,7 +83,7 @@ const RegisterScreen = () => {
   )
 };
 
-export default RegisterScreen;
+export default PunchTimeRecordScreen;
 
 const styles = StyleSheet.create({
   SectionStyle: {

@@ -31,8 +31,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './android/app/src/components/Screen/SplashScreen';
 import LoginScreen from './android/app/src/components/Screen/LoginScreen';
-import RegisterScreens from './android/app/src/components/Screen/RegisterScreen';
-import RegisterScreen from './android/app/src/components/Screen/HomeScreen';
+import PunchTimeRecordScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
+import RegisterScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
 
 function App() {
 
@@ -50,19 +50,20 @@ function App() {
           name="RegisterScreen"
           component={RegisterScreen}
           options={{
-            title: 'Register',
+            title: 'MSSPL',
             headerStyle: {
               backgroundColor: '#307ecc',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
+              alignItems: 'center'
             },
           }}
         />
         <Stack.Screen
           name="RegisterScreens"
-          component={RegisterScreens}
+          component={PunchTimeRecordScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

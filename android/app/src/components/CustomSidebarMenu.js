@@ -65,13 +65,11 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#307ecc',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#307ecc',
     padding: 15,
     textAlign: 'center',
   },
@@ -86,7 +84,7 @@ const stylesSidebar = StyleSheet.create({
     alignItems: 'center',
   },
   profileHeaderText: {
-    color: 'white',
+    color: '#307ecc',
     alignSelf: 'center',
     paddingHorizontal: 10,
     fontWeight: 'bold',

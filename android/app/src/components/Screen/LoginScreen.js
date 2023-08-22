@@ -13,6 +13,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../Loader';
 import {Button} from 'react-native-paper';
+import Logo from '../../assets/mug.jpg';
 
 const LoginScreen = ({navigation}) => {
 
@@ -90,7 +91,10 @@ const LoginScreen = ({navigation}) => {
         <View>
           <KeyboardAvoidingView enabled>
             <View style={{alignItems: 'center'}}>
-              <Text>test</Text>
+              <Image
+                source={Logo}
+                style={{width: 150, height: 150, marginLeft: 5}}
+              />
             </View>
             <View style={styles.SectionStyle}>
               <TextInput

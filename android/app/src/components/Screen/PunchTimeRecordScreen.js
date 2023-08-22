@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -22,16 +22,61 @@ const PunchTimeRecordScreen = () => {
   const [errortext, setErrortext] = useState('');
   const [checkInDisabled, setCheckInDisabled] = useState(false);
   const [checkOutDisabled, setCheckOutDisabled] = useState(true);
+  const [startTime, setStartTime] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    if (running) {
+      const intervalId = setInterval(() => {
+        setElapsedTime(Date.now() - startTime);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [running, startTime]);
+
+  const formatTime = (milliseconds) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const totalProductiveTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+    if(totalProductiveTime === '08:30:00') {
+      ToastAndroid.show('success', ToastAndroid.SHORT);
+    }
+
+    return totalProductiveTime;
+  };
+
+  const handleCheckIn = () => {
+    if (!running) {
+      setStartTime(Date.now() - elapsedTime);
+    }
+    setRunning(!running);
+  };
+
+  const handleCheckOut = () => {
+    if (running) {
+      setTotalTime(totalTime + elapsedTime);
+      setRunning(false);
+      setElapsedTime(0);
+    }
+  };
 
   const getTime = (id) => {
     const punchTime = moment().utcOffset('+05:30').format('hh:mm:ss a');
-    console.log({punchTime})
       if(id === 'checkIn')
       {
         ToastAndroid.show(`Checked In successfully at ${punchTime}`, ToastAndroid.SHORT)
+        handleCheckIn();
         setCheckInDisabled(true);
       } if ((id === 'checkOut') && (checkInDisabled === true)) {
         ToastAndroid.show(`Checked Out successfully at ${punchTime}`, ToastAndroid.SHORT)
+        handleCheckOut();
         setCheckOutDisabled(false);
       }
   };
@@ -60,6 +105,9 @@ const PunchTimeRecordScreen = () => {
               >
                 CHECK IN
               </Button>
+              <View>
+                <Text> {formatTime(elapsedTime)} </Text>
+              </View>
               <Button
                 id='checkOut'
                 style={styles.buttonStyle}
@@ -69,6 +117,9 @@ const PunchTimeRecordScreen = () => {
               >
                 CHECK OUT
               </Button>
+              <View>
+                <Text>Your today's productive time is {formatTime(totalTime)}</Text>
+              </View>
               {errortext != '' ? (
                 <Text style={styles.errorTextStyle}>
                   {errortext}

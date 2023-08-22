@@ -13,7 +13,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../Loader';
 import {Button} from 'react-native-paper';
-import Logo from '../../assets/mug.jpg';
+import Logo from '../../assets/mssplLogo.png';
 
 const LoginScreen = ({navigation}) => {
 
@@ -93,7 +93,7 @@ const LoginScreen = ({navigation}) => {
             <View style={{alignItems: 'center'}}>
               <Image
                 source={Logo}
-                style={{width: 150, height: 150, marginLeft: 5}}
+                style={styles.logo}
               />
             </View>
             <View style={styles.SectionStyle}>
@@ -166,6 +166,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#307ecc',
     alignContent: 'center',
   },
+  logo: {
+    height: 100,
+    width: 300
+  },
   SectionStyle: {
     flexDirection: 'row',
     height: 40,
@@ -199,6 +203,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     borderColor: '#dadae8',
+    color: '#FFFFFF'
   },
   registerTextStyle: {
     color: '#FFFFFF',

@@ -3,7 +3,8 @@ import {
   ActivityIndicator,
   View,
   StyleSheet,
-  Image
+  Image, Platform,
+  PermissionsAndroid
 } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,6 +22,22 @@ const SplashScreen = ({navigation}) => {
       );
     }, 3000);
   }, []);
+
+  const checkApplicationPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+        );
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkApplicationPermission()
+  });
 
   return (
     <View style={styles.container}>

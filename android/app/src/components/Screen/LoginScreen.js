@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#000000',
     alignContent: 'center',
   },
   logo: {
@@ -179,10 +179,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#D4AF37',
     borderWidth: 0,
     color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    borderColor: '#D4AF37',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,

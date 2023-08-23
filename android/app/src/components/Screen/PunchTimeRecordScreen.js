@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import { Button } from 'react-native-paper';
+import PushNotification from 'react-native-push-notification';
 
 const PunchTimeRecordScreen = () => {
 
@@ -37,6 +38,19 @@ const PunchTimeRecordScreen = () => {
     }
   }, [running, startTime]);
 
+  PushNotification.createChannel({
+    channelId: 'channel-1',
+    channelName: 'notificationChannel'
+  });
+
+  const showNotification = (title, message) => {
+    PushNotification.localNotification({
+      channelId: 'channel-1',
+      title: title,
+      message: message
+    })
+  };
+
   const formatTime = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
     const hours = Math.floor(totalSeconds / 3600);
@@ -47,6 +61,7 @@ const PunchTimeRecordScreen = () => {
 
     if(totalProductiveTime === '08:30:00') {
       ToastAndroid.show('success', ToastAndroid.SHORT);
+      showNotification('Timer', 'Your timer is still running')
     }
 
     return totalProductiveTime;
@@ -82,9 +97,9 @@ const PunchTimeRecordScreen = () => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#307ecc', alignItems: 'center'}}>
-      <View style={{marginTop: 100, alignItems: 'center'}}>
-        <Text>
+    <View style={{flex: 1, backgroundColor: '#000000', alignItems: 'center'}}>
+      <View style={{marginTop: 200, alignItems: 'center'}}>
+        <Text style={styles.textStyle}>
           Welcome Chirayu
         </Text>
         <ScrollView
@@ -105,8 +120,8 @@ const PunchTimeRecordScreen = () => {
               >
                 CHECK IN
               </Button>
-              <View>
-                <Text> {formatTime(elapsedTime)} </Text>
+              <View style={styles.timerStyle}>
+                <Text style={styles.textStyle}> {formatTime(elapsedTime)} </Text>
               </View>
               <Button
                 id='checkOut'
@@ -117,8 +132,8 @@ const PunchTimeRecordScreen = () => {
               >
                 CHECK OUT
               </Button>
-              <View>
-                <Text>Your today's productive time is {formatTime(totalTime)}</Text>
+              <View style={styles.timerStyle}>
+                <Text style={styles.textStyle}>Your today's productive time is {formatTime(totalTime)}</Text>
               </View>
               {errortext != '' ? (
                 <Text style={styles.errorTextStyle}>
@@ -146,10 +161,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: '#D4AF37',
     borderWidth: 0,
     color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    borderColor: '#D4AF37',
     height: 40,
     alignItems: 'center',
     borderRadius: 30,
@@ -163,4 +178,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 16,
   },
+  timerStyle: {
+    alignItems: 'center',
+  },
+  textStyle: {
+    color: '#FFFFFF',
+    fontSize: 15
+  }
 });

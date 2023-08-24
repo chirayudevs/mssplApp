@@ -1,4 +1,4 @@
-import React, {useState, createRef} from 'react';
+import React, {useState, createRef, useContext} from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -14,17 +14,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../Loader';
 import {Button} from 'react-native-paper';
 import Logo from '../../assets/mssplLogo.png';
+import {LoginContext} from '../../../contexts/loginContext';
 
 const LoginScreen = ({navigation}) => {
 
   const [userEmail, setUserEmail] = useState('jihowex810@bagonew.com');
-  const [userPassword, setUserPassword] = useState(12345678);
+  const [userPassword, setUserPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
+  const { login } = useContext(LoginContext);
 
   const passwordInputRef = createRef();
 
-  const handleSubmitPress = () => {
+/*  const handleSubmitPress = () => {
     console.log('test')
     setErrortext('');
     if (!userEmail) {
@@ -77,7 +79,7 @@ const LoginScreen = ({navigation}) => {
         setLoading(false);
         console.error(error);
       });
-  };
+  };*/
   return (
     <View style={styles.mainBody}>
       <Loader loading={loading} />
@@ -140,7 +142,8 @@ const LoginScreen = ({navigation}) => {
             <Button
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}
+              //onPress={handleSubmitPress}
+              onPress={() => login(userEmail, userPassword)}
               //onPress={() => navigation.navigate('RegisterScreen')}
             >
               LOGIN

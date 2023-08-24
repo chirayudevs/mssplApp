@@ -34,6 +34,7 @@ import LoginScreen from './android/app/src/components/Screen/LoginScreen';
 import PunchTimeRecordScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
 import RegisterScreen from './android/app/src/components/Screen/PunchTimeRecordScreen';
 import DrawerNavigationRoutes from './android/app/src/components/Screen/DrawerNavigatorRoutes';
+import {LoginProvider} from './android/app/contexts/loginContext';
 
 function App() {
 
@@ -41,33 +42,35 @@ function App() {
 
   const Auth = () => {
     return (
-      <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="RegisterScreen"
-          component={RegisterScreen}
-          options={{
-            title: 'MSSPL',
-            headerStyle: {
-              backgroundColor: '#307ecc',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              alignItems: 'center'
-            },
-          }}
-        />
-        <Stack.Screen
-          name="RegisterScreens"
-          component={PunchTimeRecordScreen}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
+      <LoginProvider>
+        <Stack.Navigator initialRouteName="LoginScreen">
+          <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="RegisterScreen"
+            component={RegisterScreen}
+            options={{
+              title: 'MSSPL',
+              headerStyle: {
+                backgroundColor: '#307ecc',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                alignItems: 'center'
+              },
+            }}
+          />
+          <Stack.Screen
+            name="RegisterScreens"
+            component={PunchTimeRecordScreen}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </LoginProvider>
     );
   };
 
